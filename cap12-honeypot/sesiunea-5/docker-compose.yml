@@ -1,0 +1,49 @@
+name: honeypot
+
+services:
+  honeypot:
+    build: .
+    image: honeypot:1.0
+    container_name: honeypot-server
+    restart: unless-stopped
+    ports:
+      - "2121:21"
+      - "2222:22"
+      - "2323:23"
+      - "8080:80"
+      - "8443:443"
+      - "127.0.0.1:9090:9090"     # health check, doar local
+    volumes:
+      - honeypot-data:/data
+    environment:
+      - HONEYPOT_DB_PATH=/data/honeypot.db
+    read_only: true               # sistem de fișiere read-only (în afară de /data)
+    tmpfs:
+      - /tmp:size=16m
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.50"
+          pids: 100
+    networks:
+      - honeypot-net
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  honeypot-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.30.0.0/24
+
+volumes:
+  honeypot-data:

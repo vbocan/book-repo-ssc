@@ -1,0 +1,22 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  dotnet:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - name: Build all .NET projects
+        run: |
+          for p in $(find . -name '*.csproj' | sort); do echo "== $p"; dotnet build -v q "$p" || exit 1; done
+  compose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate Docker Compose files
+        env:
+          MSSQL_SA_PASSWORD: ci-only-placeholder   # compose.yaml refuses to start without it
+        run: |
+          for f in $(find . \( -name 'docker-compose*.yml' -o -name 'compose.yaml' \) | sort); do echo "== $f"; docker compose -f "$f" config -q || exit 1; done

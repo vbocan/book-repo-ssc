@@ -1,0 +1,22 @@
+apiVersion: audit.k8s.io/v1
+kind: Policy
+omitStages: ["RequestReceived"]
+rules:
+  # Conținutul secretelor NU trebuie să ajungă în jurnal
+  - level: Metadata
+    resources:
+    - group: ""
+      resources: ["secrets", "configmaps"]
+    - group: "authentication.k8s.io"
+      resources: ["tokenreviews"]
+  # Modificările de permisiuni: cererea și răspunsul complete
+  - level: RequestResponse
+    verbs: ["create", "update", "patch", "delete"]
+    resources:
+    - group: "rbac.authorization.k8s.io"
+      resources: ["roles", "rolebindings", "clusterroles", "clusterrolebindings"]
+  # Celelalte modificări: corpul cererii
+  - level: Request
+    verbs: ["create", "update", "patch", "delete"]
+  # Citirile: doar metadate
+  - level: Metadata

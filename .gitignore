@@ -1,0 +1,28 @@
+# .NET build output
+bin/
+obj/
+*.user
+.vs/
+
+# Rider / VS Code
+.idea/
+.vscode/
+
+# Secrets: copy .env.example to .env locally, never commit it
+.env
+
+# Files produced by the labs (databases, backups, keys, captures, generated outputs)
+*.db
+*.db-wal
+*.db-shm
+*.pcap
+*.pem
+*.key
+manifest.json
+mesaj.ecb
+mesaj.cbc
+common-passwords.txt
+
+# OS
+.DS_Store
+Thumbs.db

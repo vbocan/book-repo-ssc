@@ -1,0 +1,26 @@
+# Role: permisiuni într-un singur namespace
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: aplicatie-web
+  name: cititor-poduri
+rules:
+- apiGroups: [""]
+  resources: ["pods", "pods/log"]
+  verbs: ["get", "list", "watch"]
+
+---
+# RoleBinding: asociază Role-ul cu un utilizator sau grup
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: binding-cititor
+  namespace: aplicatie-web
+subjects:
+- kind: User
+  name: "ionescu@company.ro"
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: cititor-poduri
+  apiGroup: rbac.authorization.k8s.io

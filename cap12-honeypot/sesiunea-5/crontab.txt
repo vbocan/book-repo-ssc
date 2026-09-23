@@ -1,0 +1,2 @@
+*/5 * * * * $HOME/monitor-honeypot.sh
+0 3 * * *   $HOME/backup-honeypot.sh >> $HOME/honeypot-backup.log 2>&1

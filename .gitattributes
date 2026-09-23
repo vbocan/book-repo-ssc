@@ -1,2 +1,5 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Scripts executed inside Linux containers must keep LF line endings
+*.sh text eol=lf
