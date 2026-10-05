@@ -51,7 +51,7 @@ FROM dbo.Salarii_Ledger;   -- view generat automat: INSERT 8000, INSERT 9500, DE
 
 -- Generarea digestului și verificarea integrității
 -- (verificarea cere ALLOW_SNAPSHOT_ISOLATION ON pe baza de date)
-EXEC sys.sp_generate_database_ledger_digest;
+EXEC sys.sp_generate_database_ledger_digest;   -- digestul care se exportă
 GO
 
 -- ---- Verificare (nu apare în carte) ----
