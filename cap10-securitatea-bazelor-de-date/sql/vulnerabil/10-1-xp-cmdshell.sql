@@ -9,7 +9,7 @@ EXEC sp_configure 'show advanced options', 1;
 RECONFIGURE;
 EXEC sp_configure 'xp_cmdshell', 1;
 RECONFIGURE;
-EXEC xp_cmdshell 'whoami';   -- rulează ca și contul de serviciu SQL Server
+EXEC xp_cmdshell 'whoami';   -- rulează cu identitatea contului de serviciu SQL Server
 
 -- Verificarea configurației (valoarea recomandată: 0 pentru toate)
 SELECT name, value_in_use

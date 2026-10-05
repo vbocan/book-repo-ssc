@@ -364,7 +364,9 @@ class IncidentTimelineBuilder
                     Console.WriteLine($" [BRUTE FORCE] IP: {ip}");
                     Console.WriteLine(
                         $"   {failures.Count} eșecuri în " +
-                        $"{window.TotalMinutes:F1} min, " +
+                        window.TotalMinutes.ToString(
+                            "F1", CultureInfo.InvariantCulture) +
+                        " min, " +
                         "urmate de autentificare reușită");
                     Console.WriteLine(
                         $"   Prima încercare: " +

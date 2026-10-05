@@ -1,3 +1,4 @@
+using System.Data;
 using System.Globalization;
 using Microsoft.Data.SqlClient;
 
@@ -45,9 +46,13 @@ void TesteazaAcces(string numeUtilizator, string parola, string descriere)
                 "INSERT INTO ComenziDepartamentale (Descriere, Valoare, Departament) " +
                 "VALUES (@Desc, @Val, @Dept)";
             using var insertCmd = new SqlCommand(insertSql, conn);
-            insertCmd.Parameters.AddWithValue("@Desc", "Test HR");
-            insertCmd.Parameters.AddWithValue("@Val", 1000.00m);
-            insertCmd.Parameters.AddWithValue("@Dept", "HR");
+            // Tipuri explicite, identice cu cele din schemă (NVARCHAR(200), DECIMAL(12,2), NVARCHAR(50))
+            insertCmd.Parameters.Add("@Desc", SqlDbType.NVarChar, 200).Value = "Test HR";
+            var pVal = insertCmd.Parameters.Add("@Val", SqlDbType.Decimal);
+            pVal.Precision = 12;
+            pVal.Scale = 2;
+            pVal.Value = 1000.00m;
+            insertCmd.Parameters.Add("@Dept", SqlDbType.NVarChar, 50).Value = "HR";
             insertCmd.ExecuteNonQuery();
             Console.WriteLine("  INSERT în departamentul HR: PERMIS (!)");
         }

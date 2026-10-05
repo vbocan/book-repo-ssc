@@ -8,7 +8,7 @@ services:
     ports: ["127.0.0.1:2323:23"]
 
   router-web:               # panou web cu credențiale implicite
-    image: nginx:1.28-alpine
+    image: nginx:1.30-alpine
     configs:
       - source: router-site
         target: /etc/nginx/conf.d/default.conf

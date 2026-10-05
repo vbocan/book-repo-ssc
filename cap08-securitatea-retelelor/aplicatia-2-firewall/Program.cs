@@ -16,7 +16,7 @@ var rules = new List<FirewallRule>
     new(60, "DENY", "any", "any", "any", -1,
         "Deny implicit: blochează tot restul"),
     new(70, "PERMIT", "172.16.0.5", "192.168.1.10", "TCP", 8080,
-        "Permite accesul de monitoring")  // Aceasta va fi shadowed!
+        "Permite accesul de monitoring")  // Această regulă va fi umbrită!
 };
 
 // Pachete de test
@@ -42,7 +42,7 @@ foreach (var packet in testPackets)
                       $"{packet.DestPort,-6} {action,-8} #{ruleNum,-6} {desc}");
 }
 
-// Analiza shadowing
+// Analiza umbririi regulilor
 DetectShadowing(rules);
 
 Console.WriteLine("\n=== Statistici ===");
@@ -104,10 +104,10 @@ static (string action, int ruleNumber, string description) EvaluatePacket(
     return ("DENY", 9999, "Implicit deny: nicio regulă nu s-a potrivit");
 }
 
-// Detectarea rule shadowing
+// Detectarea umbririi regulilor
 static void DetectShadowing(List<FirewallRule> rules)
 {
-    Console.WriteLine("\n=== Analiză Rule Shadowing ===\n");
+    Console.WriteLine("\n=== Analiza umbririi regulilor ===\n");
     var orderedRules = rules.OrderBy(r => r.RuleNumber).ToList();
 
     for (int i = 0; i < orderedRules.Count; i++)

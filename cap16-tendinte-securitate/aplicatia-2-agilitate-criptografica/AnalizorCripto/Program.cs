@@ -236,7 +236,9 @@ public class AnalizorCriptografic
         if (detectii.Any(d => d.Regula.Risc == NivelRisc.VulnerabilCuantic))
             Console.WriteLine("[PLANIFICARE] Algoritmi vulnerabili cuantic: " +
                 "includeți-i în inventarul criptografic și în planul " +
-                "de migrare (NIST IR 8547: depreciați după 2030).");
+                "de migrare (NIST IR 8547, proiect: RSA-2048 și " +
+                "echivalentele depreciate după 2030, toți interziși " +
+                "după 2035).");
     }
 
     private static string Eticheta(NivelRisc risc) => risc switch

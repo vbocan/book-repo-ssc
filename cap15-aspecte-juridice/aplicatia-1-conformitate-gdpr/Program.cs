@@ -86,11 +86,12 @@ public class GdprComplianceChecker
         if (_profile.PreTickedBoxes)
         {
             _results.Add(new ComplianceCheck(
-                "Consimțământ", "Casete pre-bifate",
+                "Consimțământ", "Căsuțe bifate în prealabil",
                 ComplianceStatus.Fail,
-                "Casetele pre-bifate nu constituie consimțământ valid (C-673/17).",
-                "Eliminați casetele pre-bifate. Consimțământul necesită o " +
-                "acțiune afirmativă clară din partea utilizatorului."));
+                "Căsuțele bifate în prealabil nu constituie consimțământ " +
+                "valid (C-673/17).",
+                "Eliminați căsuțele bifate în prealabil. Consimțământul " +
+                "necesită o acțiune afirmativă clară din partea utilizatorului."));
             return;
         }
 
@@ -107,14 +108,15 @@ public class GdprComplianceChecker
                 ComplianceStatus.Warning,
                 $"Consimțământ: {string.Join("; ", issues)}.",
                 "Art. 7(3): retragerea trebuie să fie la fel de ușoară " +
-                "ca acordarea. Recital 43: granularitate per scop."));
+                "ca acordarea. Considerentul 43: granularitate per scop."));
             return;
         }
 
         _results.Add(new ComplianceCheck(
             "Consimțământ", "Mecanism de consimțământ",
             ComplianceStatus.Pass,
-            "Consimțământ granular, retractabil, fără casete pre-bifate.",
+            "Consimțământ granular, care poate fi retras, fără căsuțe " +
+            "bifate în prealabil.",
             "Mențineți evidența consimțământurilor (Art. 7(1))."));
     }
 
@@ -163,7 +165,7 @@ public class GdprComplianceChecker
         if (!_profile.EncryptsDataAtRest || !_profile.EncryptsDataInTransit)
         {
             var missing = !_profile.EncryptsDataAtRest
-                ? "at rest" : "în tranzit";
+                ? "la stocare" : "în tranzit";
             _results.Add(new ComplianceCheck(
                 "Criptare", "Protecția datelor personale",
                 ComplianceStatus.Warning,
@@ -191,7 +193,7 @@ public class GdprComplianceChecker
         _results.Add(new ComplianceCheck(
             "Criptare", "Protecția datelor personale",
             ComplianceStatus.Pass,
-            $"Criptare at rest și în tranzit cu {_profile.EncryptionAlgorithm}.",
+            $"Criptare la stocare și în tranzit cu {_profile.EncryptionAlgorithm}.",
             "Monitorizați evoluția standardelor criptografice."));
     }
 
@@ -215,7 +217,7 @@ public class GdprComplianceChecker
                 "Politica de retenție", "Ștergere automată",
                 ComplianceStatus.Warning,
                 "Retenție definită " +
-                $"({_profile.RetentionDays}{(_profile.RetentionDays >= 20 ? " de" : "")} zile), " +
+                $"({DaysText(_profile.RetentionDays)}), " +
                 "dar fără ștergere automată.",
                 "Implementați mecanisme automate de ștergere/anonimizare " +
                 "la expirarea perioadei de retenție."));
@@ -225,9 +227,18 @@ public class GdprComplianceChecker
         _results.Add(new ComplianceCheck(
             "Politica de retenție", "Limitarea stocării",
             ComplianceStatus.Pass,
-            $"Retenție de {_profile.RetentionDays}{(_profile.RetentionDays >= 20 ? " de" : "")} zile, cu ștergere automată.",
+            $"Retenție de {DaysText(_profile.RetentionDays)}, cu ștergere automată.",
             "Verificați periodic că ștergerea funcționează corect."));
     }
+
+    // „1 zi”, „15 zile”, „30 de zile”, „101 zile”, „365 de zile”:
+    // în română, „de” apare când ultimele două cifre formează
+    // 00 sau un număr >= 20
+    private static string DaysText(int days) =>
+        days == 1 ? "1 zi"
+        : days != 0 && (days % 100 == 0 || days % 100 >= 20)
+            ? $"{days} de zile"
+            : $"{days} zile";
 
     private void CheckBreachNotification()
     {
@@ -239,7 +250,7 @@ public class GdprComplianceChecker
                 "Nu există procedură de notificare a breșelor.",
                 "Art. 33: notificarea autorității în 72h. Art. 34: " +
                 "comunicarea către persoanele vizate dacă riscul e ridicat. " +
-                "Vezi capitolul 13 pentru incident response."));
+                "Vezi capitolul 13 pentru răspunsul la incidente."));
             return;
         }
 
@@ -316,13 +327,14 @@ public class GdprComplianceChecker
             reasons.Add("art. 35(3)(b): date sensibile pe scară largă");
         if (_profile.MonitorsPublicAreas && _profile.LargeScaleProcessing)
             reasons.Add("art. 35(3)(c): zone publice pe scară largă");
-        // Ghidurile EDPB (WP248): DPIA dacă sunt îndeplinite >= 2 criterii
+        // Ghidurile WP248 (Grupul de lucru Art. 29, preluate de EDPB):
+        // DPIA dacă sunt îndeplinite >= 2 criterii
         int edpbCriteria = new[] {
             _profile.ProfilesUsers, _profile.SystematicMonitoring,
             _profile.ProcessesSensitiveData, _profile.LargeScaleProcessing
         }.Count(c => c);
         if (reasons.Count == 0 && edpbCriteria >= 2)
-            reasons.Add($"{edpbCriteria} criterii EDPB (WP248) îndeplinite");
+            reasons.Add($"{edpbCriteria} criterii din ghidurile WP248 îndeplinite");
 
         if (reasons.Count > 0 && !_profile.HasCompletedDpia)
         {
