@@ -8,4 +8,4 @@ Scanare TCP connect concurentă (cu limită de paralelism și timeout) și ident
 > pentru asta. Scanarea altor sisteme fără autorizare scrisă este ilegală (capitolul 15, Codul penal art. 360–366).
 
 **Cerințe:** .NET 10 SDK (Anexa A). **Rulare:** `dotnet run` (ținta implicită `127.0.0.1`) sau `dotnet run -- scanme.nmap.org`.
-Porturile găsite depind de sistem; formatul ieșirii este cel din carte.
+Porturile găsite depind de sistem; formatul ieșirii este cel din carte, unde apare rezultatul pentru `scanme.nmap.org`.

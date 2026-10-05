@@ -1,5 +1,5 @@
 -- Tabele temporale și ștergerea din istoric
--- Carte: secțiunea 10.5, Tabele temporale (temporal tables) (10-securitatea-bazelor-de-date.md:723–735, 10-securitatea-bazelor-de-date.md:741–749, 10-securitatea-bazelor-de-date.md:755–760).
+-- Carte: capitolul 10, secțiunea 10.4, Tabele temporale (temporal tables).
 -- Rulați pe serverul de laborator din compose.yaml (vezi README.md). Scriptul se poate rula de mai multe ori.
 
 -- ---- Pregătire (nu apare în carte): baza de date ----

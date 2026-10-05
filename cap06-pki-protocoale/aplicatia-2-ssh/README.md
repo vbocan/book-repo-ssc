@@ -18,3 +18,30 @@ docker exec ssc-sshd sshd -V
 Portul este publicat doar pe `127.0.0.1`. Parola `Lab-SSC-2026` a utilizatorului `student` există doar pentru
 primii pași; la pasul 6 dezactivați autentificarea cu parolă. Pașii 2–7 sunt descriși în carte.
 La final: `docker rm -f ssc-sshd`.
+
+## Rezultatul așteptat
+
+### Pasul 5: `ssh -v ... | grep -E ...`, în funcție de client
+
+```
+# Client OpenSSH 10.x (Git Bash, Linux sau macOS recente)
+debug1: kex: algorithm: mlkem768x25519-sha256
+debug1: kex: host key algorithm: ssh-ed25519
+Authenticated to localhost ([127.0.0.1]:2222) using "publickey".
+student
+
+# Client OpenSSH_for_Windows (preinstalat în Windows, fără KEX post-cuantic)
+debug1: kex: algorithm: curve25519-sha256
+debug1: kex: host key algorithm: ssh-ed25519
+Authenticated to localhost ([127.0.0.1]:2222) using "publickey".
+student
+```
+
+### Pasul 6: `sshd -T` după reîncărcarea configurației
+
+```
+permitrootlogin no
+pubkeyauthentication yes
+passwordauthentication no
+kbdinteractiveauthentication no
+```

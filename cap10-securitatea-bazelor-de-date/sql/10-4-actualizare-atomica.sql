@@ -1,5 +1,5 @@
 -- Actualizarea atomică a soldului (concurență)
--- Carte: secțiunea 10.4, Concurență optimistă și pesimistă (10-securitatea-bazelor-de-date.md:597–600).
+-- Carte: capitolul 10, secțiunea 10.1, Concurență optimistă și pesimistă.
 -- Rulați pe serverul de laborator din compose.yaml (vezi README.md). Scriptul se poate rula de mai multe ori.
 
 -- ---- Pregătire (nu apare în carte): tabelul și parametrii (@Suma mai mare decât soldul) ----

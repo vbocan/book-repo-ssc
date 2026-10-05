@@ -1,5 +1,5 @@
 -- Ledger tables (append-only și updatable)
--- Carte: secțiunea 10.5, Ledger tables (10-securitatea-bazelor-de-date.md:772–803).
+-- Carte: capitolul 10, secțiunea 10.4, Ledger tables.
 -- Rulați pe serverul de laborator din compose.yaml (vezi README.md). Scriptul se poate rula de mai multe ori.
 
 -- ---- Pregătire (nu apare în carte): baza de date ----

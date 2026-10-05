@@ -1,5 +1,5 @@
 -- Modelul GRANT/REVOKE/DENY
--- Carte: secțiunea 10.2, Modelul GRANT/REVOKE/DENY (10-securitatea-bazelor-de-date.md:116–126).
+-- Carte: capitolul 10, secțiunea 10.2, Modelul GRANT/REVOKE/DENY.
 -- Rulați pe serverul de laborator din compose.yaml (vezi README.md). Scriptul se poate rula de mai multe ori.
 
 -- ---- Pregătire (nu apare în carte): baza de date, tabelele și utilizatorii folosiți în exemplu ----

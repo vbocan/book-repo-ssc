@@ -1,5 +1,5 @@
 -- View-uri ca mecanism de securitate
--- Carte: secțiunea 10.2, View-uri ca mecanism de securitate (10-securitatea-bazelor-de-date.md:265–273).
+-- Carte: capitolul 10, secțiunea 10.2, View-uri ca mecanism de securitate.
 -- Rulați pe serverul de laborator din compose.yaml (vezi README.md). Scriptul se poate rula de mai multe ori.
 
 -- ---- Pregătire (nu apare în carte): baza de date, tabelul Clienti și utilizatorul SuportClienti ----

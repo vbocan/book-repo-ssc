@@ -1,6 +1,6 @@
 # Capitolul 10: Securitatea bazelor de date
 
-**În carte:** capitolul 10 (secțiunile 10.1–10.6 și „Aplicații practice”) și Anexa C.6.
+**În carte:** capitolul 10 (secțiunile 10.1–10.5 și „Aplicații practice”) și Anexa C.6.
 
 ## Serverul de laborator
 
@@ -40,12 +40,12 @@ La final: `docker compose down -v` (șterge și volumul cu datele).
 
 | Director | Ce conține |
 |---|---|
-| `sql/` | Scripturile T-SQL din secțiunile 10.2–10.6, câte unul pentru fiecare exemplu, rulabile singure |
-| `sql/vulnerabil/` | Exemplul `xp_cmdshell` (10.1) și payload-urile de SQL injection analizate în 10.6 |
+| `sql/` | Scripturile T-SQL din secțiunile 10.1–10.5, câte unul pentru fiecare exemplu, rulabile singure |
+| `sql/vulnerabil/` | Exemplul `xp_cmdshell` (10.1) și payload-urile de SQL injection analizate în 10.5 |
 | `aplicatia-1-sql-injection/` | Laboratorul de SQL injection: `setup.sql` și programul `vulnerabil/` (LabInjection) |
 | `aplicatia-2-row-level-security/` | `setup-rls.sql` și programul LabRls (trei utilizatori, trei vederi asupra datelor) |
 | `aplicatia-3-audit/` | Programul LabAudit: trigger-e de audit, tabel temporal, detectarea unei modificări de preț |
-| `exemple/` | Programele C# din 10.3 (Always Encrypted, criptarea în tranzit) și clasele din 10.4 și 10.6 |
+| `exemple/` | Programele C# din 10.3 (Always Encrypted, criptarea în tranzit) și clasele din 10.1 și 10.5 |
 
 Fiecare script din `sql/` are trei părți marcate: pregătirea (obiectele pe care exemplul din carte le presupune,
 de exemplu tabelele și utilizatorii), codul din carte, neschimbat, și o verificare. Scripturile recreează baza

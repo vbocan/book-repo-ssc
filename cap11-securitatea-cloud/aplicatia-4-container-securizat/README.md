@@ -5,7 +5,7 @@
 Directorul `SecureApi/` conține aplicația minimală (raportează utilizatorul, capabilitățile efective și dacă poate scrie
 în propriul director) și două imagini:
 
-- `Dockerfile.nesigur`: **intenționat nesigur** (rulează ca root, livrează întregul SDK);
+- `Dockerfile.nesigur`: **intenționat nesigur** (rulează ca root, duce întregul SDK în imaginea finală);
 - `Dockerfile`: varianta multi-stage din secțiunea 11.3, cu `HEALTHCHECK` adăugat înainte de `ENTRYPOINT` (pasul 3).
 
 **Cerințe:** Docker (Anexa C). Comenzile sunt pentru bash (în PowerShell, `\` de la final de rând devine `` ` ``).

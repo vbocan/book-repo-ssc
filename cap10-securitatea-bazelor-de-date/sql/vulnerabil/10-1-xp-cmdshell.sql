@@ -1,6 +1,6 @@
 -- Ce poate face un atacator cu drepturi sysadmin (xp_cmdshell, SQL Server pe Windows).
 -- Pe SQL Server pentru Linux (containerul de laborator) xp_cmdshell nu există: sp_configure dă eroarea 15392
--- Carte: secțiunea 10.1, Hardening-ul serverului de baze de date (10-securitatea-bazelor-de-date.md:49–60).
+-- Carte: capitolul 10, secțiunea 10.1, Hardening-ul serverului de baze de date.
 -- Rulați pe serverul de laborator din compose.yaml (vezi README.md). Scriptul se poate rula de mai multe ori.
 
 -- ---- Codul din carte ----

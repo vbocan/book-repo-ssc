@@ -11,8 +11,9 @@ Cod însoțitor pentru manualul **_Securitatea sistemelor de calcul_** de Valer 
 Timișoara). Depozitul conține **aplicațiile practice** din capitolele 5–16, ca proiecte complete, gata de
 rulat: 52 de proiecte .NET 10, scripturile T-SQL ale capitolului 10, fișierele Dockerfile și Docker
 Compose ale laboratoarelor și honeypot-ul din capitolul 12, în câte un instantaneu pentru fiecare dintre cele
-șase sesiuni. Codul este identic cu cel tipărit în carte și este **verificat că se compilează și rulează**
-cu .NET 10; unde cartea tipărește doar un extras, fișierul complet se află aici, la calea indicată în text.
+șase sesiuni. Cartea explică felul în care este construit fiecare program și tipărește doar fragmentele în care
+stă ideea de securitate; programele complete se află aici, **verificate că se compilează și rulează** cu .NET 10,
+iar fiecare fragment tipărit apare literal în fișierul indicat în text.
 
 ```bash
 git clone https://github.com/vbocan/book-repo-ssc.git
@@ -48,7 +49,7 @@ cp .env.example .env               # parola contului sa, citită de compose.yaml
 docker compose up -d --wait        # SQL Server 2025 Developer, doar pe 127.0.0.1
 ```
 
-Fiecare director de aplicație are un `README.md` cu pașii exacți și cu trimiterea la ieșirea așteptată din carte.
+Fiecare director de aplicație are un `README.md` cu pașii exacți și, unde cartea o tipărește scurtată, cu ieșirea așteptată completă.
 
 ## 📚 Harta capitolelor
 

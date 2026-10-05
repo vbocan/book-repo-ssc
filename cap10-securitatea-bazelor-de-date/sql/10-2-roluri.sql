@@ -1,5 +1,5 @@
 -- Roluri de bază de date
--- Carte: secțiunea 10.2, Roluri de bază de date (10-securitatea-bazelor-de-date.md:138–153).
+-- Carte: capitolul 10, secțiunea 10.2, Roluri de bază de date.
 -- Rulați pe serverul de laborator din compose.yaml (vezi README.md). Scriptul se poate rula de mai multe ori.
 
 -- ---- Pregătire (nu apare în carte): baza de date, tabelele, schema rapoarte și utilizatorii ioana și mihai ----

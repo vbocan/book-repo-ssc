@@ -1,5 +1,5 @@
 -- Row-Level Security cu predicate de filtrare și de blocare
--- Carte: secțiunea 10.2, Row-Level Security (RLS) (10-securitatea-bazelor-de-date.md:170–212).
+-- Carte: capitolul 10, secțiunea 10.2, Row-Level Security (RLS).
 -- Rulați pe serverul de laborator din compose.yaml (vezi README.md). Scriptul se poate rula de mai multe ori.
 
 -- ---- Pregătire (nu apare în carte): baza de date ----

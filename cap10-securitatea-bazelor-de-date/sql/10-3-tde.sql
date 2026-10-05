@@ -1,5 +1,5 @@
 -- Transparent Data Encryption (TDE)
--- Carte: secțiunea 10.3, Transparent Data Encryption (10-securitatea-bazelor-de-date.md:300–334).
+-- Carte: capitolul 10, secțiunea 10.3, Transparent Data Encryption.
 -- Rulați pe serverul de laborator din compose.yaml (vezi README.md). Scriptul se poate rula de mai multe ori.
 
 -- ---- Pregătire (nu apare în carte): baza de date ProductionDB; oprire dacă scriptul a mai rulat ----

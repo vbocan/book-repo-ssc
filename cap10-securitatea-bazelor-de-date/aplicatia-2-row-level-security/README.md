@@ -19,4 +19,32 @@ cd aplicatia-2-row-level-security
 dotnet run
 ```
 
-Ieșirea așteptată este în carte.
+Cartea tipărește o ieșire prescurtată (fără lista comenzilor văzute de administrator); ieșirea completă este mai jos.
+
+## Rezultatul așteptat
+
+```
+=== Test Row-Level Security ===
+
+--- Conectat ca: Departament IT ---
+  [1] Licențe Visual Studio       15,000.00 RON  (IT)
+  [2] Servere rack                45,000.00 RON  (IT)
+  [5] Switch-uri rețea            22,000.00 RON  (IT)
+  Total: 3 comenzi vizibile
+  INSERT în departamentul HR: BLOCAT de block predicate (RLS)
+
+--- Conectat ca: Departament HR ---
+  [3] Training management          8,000.00 RON  (HR)
+  [4] Echipamente birou           12,000.00 RON  (HR)
+  [6] Cursuri limba engleză        5,000.00 RON  (HR)
+  Total: 3 comenzi vizibile
+
+--- Conectat ca: Administrator ---
+  [1] Licențe Visual Studio       15,000.00 RON  (IT)
+  [2] Servere rack                45,000.00 RON  (IT)
+  [3] Training management          8,000.00 RON  (HR)
+  [4] Echipamente birou           12,000.00 RON  (HR)
+  [5] Switch-uri rețea            22,000.00 RON  (IT)
+  [6] Cursuri limba engleză        5,000.00 RON  (HR)
+  Total: 6 comenzi vizibile
+```

@@ -4,9 +4,9 @@
 
 | Fișier | Pasul | Conținut |
 |---|---|---|
-| `namespace.yaml` | 2 | Namespace-ul `aplicatie`, etichetat pentru profilul PSS Restricted (exemplul din 11.4) |
+| `namespace.yaml` | 2 | Namespace-ul `aplicatie`, etichetat pentru profilul PSS Restricted (exemplul din 11.5) |
 | `pod-sigur.yaml` | 4 | Pod conform profilului Restricted, cu sistem de fișiere read-only și limite de resurse |
-| `deny-all-ingress.yaml` | 6 | Politica default-deny din 11.4 |
+| `deny-all-ingress.yaml` | 6 | Politica default-deny din 11.5 |
 
 **Cerințe:** aplicația 4 (imaginile `api-nesigur:1.0` și `api-sigur:1.0`), kind v0.33.0 și `kubectl`.
 

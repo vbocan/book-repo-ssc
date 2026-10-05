@@ -1,5 +1,5 @@
 -- Trigger de audit pentru UPDATE
--- Carte: secțiunea 10.5, Trigger-e de audit pentru operații DML (10-securitatea-bazelor-de-date.md:674–713).
+-- Carte: capitolul 10, secțiunea 10.4, Trigger-e de audit pentru operații DML.
 -- Rulați pe serverul de laborator din compose.yaml (vezi README.md). Scriptul se poate rula de mai multe ori.
 
 -- ---- Pregătire (nu apare în carte): baza de date și tabelul Clienti ----

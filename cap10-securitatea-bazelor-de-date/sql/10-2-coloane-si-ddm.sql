@@ -1,5 +1,5 @@
 -- Permisiuni pe coloane și Dynamic Data Masking
--- Carte: secțiunea 10.2, Permisiuni pe coloane și Dynamic Data Masking (10-securitatea-bazelor-de-date.md:234–253, 10-securitatea-bazelor-de-date.md:226–228).
+-- Carte: capitolul 10, secțiunea 10.2, Permisiuni pe coloane și Dynamic Data Masking.
 -- Rulați pe serverul de laborator din compose.yaml (vezi README.md). Scriptul se poate rula de mai multe ori.
 
 -- ---- Pregătire (nu apare în carte): baza de date și utilizatorii; tabelul Clienti (al doilea bloc din carte) se creează înaintea GRANT-ului pe coloane (primul bloc) ----

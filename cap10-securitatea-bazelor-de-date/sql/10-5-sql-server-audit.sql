@@ -1,5 +1,5 @@
 -- SQL Server Audit pe trei niveluri
--- Carte: secțiunea 10.5, SQL Server Audit (10-securitatea-bazelor-de-date.md:622–664).
+-- Carte: capitolul 10, secțiunea 10.4, SQL Server Audit.
 -- Rulați pe serverul de laborator din compose.yaml (vezi README.md). Scriptul se poate rula de mai multe ori.
 
 -- ---- Pregătire (nu apare în carte): directorul de audit, baza ProductionDB, tabelul Clienti și procedura auditată ----

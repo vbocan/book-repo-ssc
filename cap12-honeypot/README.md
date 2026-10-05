@@ -6,7 +6,7 @@
 > dedicată, fără alte date), izolat cum descrie sesiunea 4, cu egress blocat. Accesul neautorizat rămâne infracțiune și
 > când ținta este un honeypot (în România, art. 360 din Codul penal), iar voi nu aveți dreptul să „ripostați”.
 > Adresele IP colectate sunt date cu caracter personal (GDPR, cauza C-582/14 *Breyer*): păstrați-le limitat și securizat
-> (secțiunea 12.3, „Considerații legale și etice”).
+> (secțiunea 12.4, „Limitele legale și etice”).
 
 Fiecare director `sesiunea-N/` este un proiect **complet**, în starea de la finalul sesiunii N; dacă ați rămas în
 urmă, porniți de la instantaneul sesiunii anterioare. `sesiunea-6/` este proiectul final testat.
@@ -44,4 +44,4 @@ explică și cartea. Traficul de test din sesiunea 5 se generează cu `test/run-
 shell Linux, macOS sau WSL: scriptul montează `$PWD/test` în containere, iar în Git Bash pe Windows această cale nu
 ajunge corect la Docker. Numărătorile din raportul `analyze` pot diferi ușor de la o rulare la alta (ferestrele de
 5 minute sunt aliniate la ceas, deci o sesiune poate fi împărțită între două ferestre).
-Ieșirile așteptate ale fiecărei sesiuni sunt tipărite în carte.
+Cartea tipărește din ieșirea fiecărei sesiuni doar liniile care arată fenomenul discutat; ieșirile complete se află în secțiunea „Rezultatul așteptat” din README-ul fiecărui director `sesiunea-N/`.

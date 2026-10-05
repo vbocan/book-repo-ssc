@@ -1,5 +1,5 @@
 -- Proceduri stocate: securizat, vulnerabil și SQL dinamic cu listă albă
--- Carte: secțiunea 10.6, Prevenirea SQL injection, 2. Proceduri stocate (10-securitatea-bazelor-de-date.md:1028–1050, 10-securitatea-bazelor-de-date.md:1058–1081).
+-- Carte: capitolul 10, secțiunea 10.5, Prevenirea SQL injection, 2. Proceduri stocate.
 -- Rulați pe serverul de laborator din compose.yaml (vezi README.md). Scriptul se poate rula de mai multe ori.
 
 -- ---- Pregătire (nu apare în carte): tabelul Produse (usp_CautaProduseVulnerabil este INTENȚIONAT vulnerabilă) ----

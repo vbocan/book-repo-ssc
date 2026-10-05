@@ -1,5 +1,5 @@
 -- Privilegii minime pentru contul aplicației
--- Carte: secțiunea 10.6, Prevenirea SQL injection, 5. Privilegii minime (10-securitatea-bazelor-de-date.md:1210–1225, 10-securitatea-bazelor-de-date.md:1231–1232).
+-- Carte: capitolul 10, secțiunea 10.5, Prevenirea SQL injection, 5. Privilegii minime.
 -- Rulați pe serverul de laborator din compose.yaml (vezi README.md). Scriptul se poate rula de mai multe ori.
 
 -- ---- Pregătire (nu apare în carte): baza AppDB cu tabelele din exemplu; login-ul se recreează la fiecare rulare ----

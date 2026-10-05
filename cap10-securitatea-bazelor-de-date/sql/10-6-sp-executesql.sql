@@ -1,5 +1,5 @@
 -- Cum ajunge o interogare parametrizată la server (sp_executesql)
--- Carte: secțiunea 10.6, Prevenirea SQL injection, 1. Interogări parametrizate (10-securitatea-bazelor-de-date.md:1011–1014).
+-- Carte: capitolul 10, secțiunea 10.5, Prevenirea SQL injection, 1. Interogări parametrizate.
 -- Rulați pe serverul de laborator din compose.yaml (vezi README.md). Scriptul se poate rula de mai multe ori.
 
 -- ---- Pregătire (nu apare în carte): tabelul Utilizatori; payload-ul nu găsește niciun rând ----
