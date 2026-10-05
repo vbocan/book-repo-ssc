@@ -334,7 +334,7 @@ class Program
         rbac.AssignRoleToUser("elena", "Contabil");
         rbac.AssignRoleToUser("elena", "Admin");
 
-        // Încercare de violare SSD
+        // Încercare de încălcare a SSD
         rbac.AssignRoleToUser("elena", "Auditor");
 
         // Afișare permisiuni
